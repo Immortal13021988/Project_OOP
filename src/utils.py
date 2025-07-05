@@ -54,24 +54,24 @@ def create_list_from_json(data: list) -> list:
 
 if __name__ == "__main__":
     file_list = read_json('../data/products.json')
-    produgi = create_list_from_json(file_list)
-    prof = produgi[0].products
+    products = create_list_from_json(file_list)
+    prof = products[0].products
     for pr in prof:
         print(pr.name)
         print(pr.description)
         print(pr.price)
         print(pr.quantity)
-    print(produgi[0].name)
-    print(produgi[0].description)
+    print(products[0].name)
+    print(products[0].description)
 
-    prof = produgi[1].products
+    prof = products[1].products
     for pr in prof:
         print(pr.name)
         print(pr.description)
         print(pr.price)
         print(pr.quantity)
-    print(produgi[1].name)
-    print(produgi[1].description)
+    print(products[1].name)
+    print(products[1].description)
 
     print(Category.category_count)
     print(Category.product_count)
