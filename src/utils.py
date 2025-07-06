@@ -52,7 +52,7 @@ def create_list_from_json(data: list) -> list:
         return []
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     file_list = read_json('../data/products.json')
     products = create_list_from_json(file_list)
     prof = products[0].products
