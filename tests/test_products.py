@@ -1,4 +1,3 @@
-import pytest
 from src.products import Product, Category
 
 
@@ -23,14 +22,42 @@ def test_category_init(category_1, category_2):
     assert category_2.name == "Телевизоры"
     assert category_2.description == ("Современный телевизор, который позволяет "
                                       "наслаждаться просмотром, станет вашим другом и помощником")
-    assert len(category_1.products) == 2
-    assert len(category_2.products) == 1
+    assert len(category_1.products_list) == 2
+    assert len(category_2.products_list) == 1
     assert category_1.product_count == 3
     assert category_2.product_count == 3
     assert category_1.category_count == 2
     assert category_2.category_count == 2
 
 
+def test_product_new_product_1(product_new_1, category_1):
+    product_new_1 = Product.new_product(product_new_1, category_1.products_list)
+    assert product_new_1.quantity == 10
+    assert product_new_1.price == 180000.0
 
 
+def test_product_new_product_2(product_new_2, category_1):
+    product_new_2 = Product.new_product(product_new_2, category_1.products_list)
+    assert product_new_2.quantity == 11
+    assert product_new_2.price == 181000.0
 
+
+def test_product_new_product_3(product_new_3, category_1):
+    product_new_3 = Product.new_product(product_new_3, category_1.products_list)
+    assert product_new_3.quantity == 5
+    assert product_new_3.price == 179000.0
+
+
+# def test_product_price(product_new_1, category_1):
+#     new_product = Product.new_product(product_new_1, category_1.products_list)
+#     new_product.price = 1888800
+#     assert new_product.price == 1888800
+
+def test_category_add_product(category_1, product_3):
+    assert len(category_1.products_list) == 2
+    category_1.add_product(product_3)
+    assert len(category_1.products_list) == 3
+
+
+def test_category_prodict_str(category_2):
+    assert category_2.products_str == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'

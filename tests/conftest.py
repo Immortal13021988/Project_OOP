@@ -38,3 +38,26 @@ def product_1():
 @pytest.fixture
 def product_2():
     return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+
+@pytest.fixture
+def product_3():
+    return Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
+
+
+@pytest.fixture
+def product_new_1():
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+            "quantity": 5}
+
+
+@pytest.fixture
+def product_new_2():
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 181000.0,
+            "quantity": 6}
+
+
+@pytest.fixture
+def product_new_3():
+    return {"name": "Samsung Galaxy S24 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 179000.0,
+            "quantity": 5}
