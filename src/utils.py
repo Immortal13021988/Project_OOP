@@ -1,4 +1,3 @@
-
 import json
 import logging
 import os
@@ -8,7 +7,9 @@ from src.products import Category, Product
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler("../logs/utils.log", "w", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: - %(message)s")
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s: - %(message)s"
+)
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
@@ -42,9 +43,9 @@ def create_list_from_json(data: list) -> list:
         categories = []
         for category in data:
             products = []
-            for prod in category['products']:
+            for prod in category["products"]:
                 products.append(Product(**prod))
-            category['products'] = products
+            category["products"] = products
 
             categories.append(Category(**category))
         return categories
@@ -53,7 +54,7 @@ def create_list_from_json(data: list) -> list:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    file_list = read_json('../data/products.json')
+    file_list = read_json("../data/products.json")
     categories = create_list_from_json(file_list)
     prof = categories[0].products_list
     for pr in prof:
