@@ -6,7 +6,8 @@ from src.products import Category, Product
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("../logs/utils.log", "w", encoding="utf-8")
+file_full_path = os.path.abspath("utils.log")
+file_handler = logging.FileHandler(file_full_path, "w", encoding="utf-8")
 file_formatter = logging.Formatter(
     "%(asctime)s - %(name)s - %(levelname)s: - %(message)s"
 )
@@ -49,13 +50,14 @@ def create_list_from_json(data: list) -> list:
 
             categories.append(Category(**category))
         return categories
-    except Exception:
-        return []
+    except TypeError:
+        raise
 
 
 if __name__ == "__main__":  # pragma: no cover
     file_list = read_json("../data/products.json")
     categories = create_list_from_json(file_list)
+
     prof = categories[0].products_list
     for pr in prof:
         print(pr.name)
@@ -64,7 +66,7 @@ if __name__ == "__main__":  # pragma: no cover
         print(pr.quantity)
     print(categories[0].name)
     print(categories[0].description)
-
+    print(categories[0])
     prof = categories[1].products_list
     for pr in prof:
         print(pr.name)
@@ -73,6 +75,6 @@ if __name__ == "__main__":  # pragma: no cover
         print(pr.quantity)
     print(categories[1].name)
     print(categories[1].description)
-
+    print()
     print(Category.category_count)
     print(Category.product_count)
