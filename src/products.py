@@ -8,18 +8,37 @@ class Product:
     def __init__(self, name, description, price, quantity=0):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, new_dict, products_list):
-        if new_dict['name'] in products_list:
-            re
-        else:
-            name, description, price, quantity  = new_dict['name'], new_dict['description'], new_dict['price'], new_dict['quantity']
+    def new_product(cls, new_dict, prod_list):
+        for prod in prod_list:
+            if new_dict['name'] == prod.name:
+                if new_dict['price'] > prod.price:
+                    name, description, price, quantity = new_dict['name'], new_dict['description'], new_dict['price'], \
+                        new_dict['quantity'] + prod.quantity
+                else:
+                    name, description, price, quantity = new_dict['name'], new_dict['description'], prod.price, \
+                        new_dict['quantity'] + prod.quantity
+            else:
+                name, description, price, quantity = new_dict['name'], new_dict['description'], new_dict['price'], \
+                    new_dict['quantity']
             return Product(name, description, price, quantity)
 
+    @property
+    def price(self):
+        return self.__price
 
+    @price.setter
+    def price(self, new_price):
+        if new_price > 0:
+            if new_price < new_product.price:
+                user = input(f'Подтвердите уменьшение цены: y/n\n')
+                if user.lower() == "y":
+                    self.__price = new_price
+        else:
+            print(f'Цена не должна быть нулевая или отрицательная')
 
 
 class Category:
@@ -40,8 +59,9 @@ class Category:
     def add_product(self, product: Product):
         self.__products.append(product)
         Category.product_count += 1
+
     @property
-    def products(self):
+    def products_str(self):
         new_string = ""
         for prod in self.__products:
             new_string += f'{prod.name}, {prod.price} руб. Остаток: {prod.quantity} шт.\n'
@@ -54,6 +74,7 @@ class Category:
             new_list.append(prod)
         return new_list
 
+
 if __name__ == "__main__":  # pragma: no cover
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
@@ -65,24 +86,25 @@ if __name__ == "__main__":  # pragma: no cover
         [product1, product2, product3]
     )
 
-    print(category1.products)
+    print(category1.products_str)
+    print(category1.product_count)
     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
     category1.add_product(product4)
-    print(category1.products)
+    print(category1.products_str)
     print(category1.product_count)
 
-    # new_product = Product.new_product(
-    #     {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-    #      "quantity": 8})
-    # print(new_product.name)
-    # print(new_product.description)
-    # print(new_product.price)
-    # print(new_product.quantity)
-    # print(category1.products)
-    # # new_product.price = 800
-    # # print(new_product.price)
-    # #
-    # # new_product.price = -100
-    # print(new_product.price)
-    # new_product.price = 0
-    # print(new_product.price)
+    new_product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5}, category1.products_list)
+    print(new_product.name)
+    print(new_product.description)
+    print(new_product.price)
+    print(new_product.quantity)
+
+    new_product.price = 800
+    print(new_product.price)
+
+    new_product.price = -100
+    print(new_product.price)
+    new_product.price = 0
+    print(new_product.price)

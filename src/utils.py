@@ -39,39 +39,39 @@ def create_list_from_json(data: list) -> list:
     Функция получает список словарей с данными, создает объект из полученных данных
     """
     try:
-        categorys = []
+        categories = []
         for category in data:
             products = []
             for prod in category['products']:
                 products.append(Product(**prod))
             category['products'] = products
 
-            categorys.append(Category(**category))
-        return categorys
+            categories.append(Category(**category))
+        return categories
     except Exception:
         return []
 
 
 if __name__ == "__main__":  # pragma: no cover
     file_list = read_json('../data/products.json')
-    products = create_list_from_json(file_list)
-    prof = products[0].products
+    categories = create_list_from_json(file_list)
+    prof = categories[0].products_list
     for pr in prof:
         print(pr.name)
         print(pr.description)
         print(pr.price)
         print(pr.quantity)
-    print(products[0].name)
-    print(products[0].description)
+    print(categories[0].name)
+    print(categories[0].description)
 
-    prof = products[1].products
+    prof = categories[1].products_list
     for pr in prof:
         print(pr.name)
         print(pr.description)
         print(pr.price)
         print(pr.quantity)
-    print(products[1].name)
-    print(products[1].description)
+    print(categories[1].name)
+    print(categories[1].description)
 
     print(Category.category_count)
     print(Category.product_count)
