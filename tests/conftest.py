@@ -59,5 +59,11 @@ def product_new_2():
 
 @pytest.fixture
 def product_new_3():
-    return {"name": "Samsung Galaxy S24 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 179000.0,
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 100000.0,
+            "quantity": 6}
+
+
+@pytest.fixture
+def product_new_4():
+    return {"name": "Samsung Galaxy S24 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 100000.0,
             "quantity": 5}

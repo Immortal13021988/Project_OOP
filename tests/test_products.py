@@ -1,4 +1,6 @@
-from src.products import Product, Category
+from unittest.mock import patch, MagicMock
+
+from src.products import Product
 
 
 def test_product_init_1(product_1):
@@ -42,16 +44,33 @@ def test_product_new_product_2(product_new_2, category_1):
     assert product_new_2.price == 181000.0
 
 
-def test_product_new_product_3(product_new_3, category_1):
-    product_new_3 = Product.new_product(product_new_3, category_1.products_list)
-    assert product_new_3.quantity == 5
-    assert product_new_3.price == 179000.0
+def test_product_new_product_4(product_new_4, category_1):
+    product_new_4 = Product.new_product(product_new_4, category_1.products_list)
+    assert product_new_4.quantity == 5
+    assert product_new_4.price == 100000.0
 
 
-# def test_product_price(product_new_1, category_1):
-#     new_product = Product.new_product(product_new_1, category_1.products_list)
-#     new_product.price = 1888800
-#     assert new_product.price == 1888800
+def test_product_price_1(product_new_3, category_1):
+    new_product = Product.new_product(product_new_3, category_1.products_list)
+    new_product.price = 181000
+    assert new_product.price == 181000
+    new_product.price = 0
+    assert new_product.price == 181000
+
+
+@patch('builtins.input')
+def test_product_price_2(mock_input, product_new_3, category_1):
+    mock_input.return_value = 'y'
+    new_product = Product.new_product(product_new_3, category_1.products_list)
+    new_product.price = 179000.0
+    assert new_product.price == 179000
+    mock_input.return_value = 'n'
+    new_product.price = 178000.0
+    assert new_product.price == 179000
+    mock_input.return_value = 'yes'
+    new_product.price = 178000.0
+    assert new_product.price == 179000
+
 
 def test_category_add_product(category_1, product_3):
     assert len(category_1.products_list) == 2

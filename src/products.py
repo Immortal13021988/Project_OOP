@@ -24,7 +24,7 @@ class Product:
             else:
                 name, description, price, quantity = new_dict['name'], new_dict['description'], new_dict['price'], \
                     new_dict['quantity']
-            return Product(name, description, price, quantity)
+            return cls(name, description, price, quantity)
 
     @property
     def price(self):
@@ -33,10 +33,12 @@ class Product:
     @price.setter
     def price(self, new_price):
         if new_price > 0:
-            if new_price < new_product.price:
+            if new_price < self.__price:
                 user = input(f'Подтвердите уменьшение цены: y/n\n')
                 if user.lower() == "y":
                     self.__price = new_price
+            else:
+                self.__price = new_price
         else:
             print(f'Цена не должна быть нулевая или отрицательная')
 
@@ -108,3 +110,4 @@ if __name__ == "__main__":  # pragma: no cover
     print(new_product.price)
     new_product.price = 0
     print(new_product.price)
+    print(category1.products_str)
