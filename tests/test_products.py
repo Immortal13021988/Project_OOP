@@ -26,10 +26,10 @@ def test_category_init(category_1, category_2):
                                       "наслаждаться просмотром, станет вашим другом и помощником")
     assert len(category_1.products_list) == 2
     assert len(category_2.products_list) == 1
-    assert category_1.product_count == 3
-    assert category_2.product_count == 3
-    assert category_1.category_count == 2
-    assert category_2.category_count == 2
+    assert category_1.product_count == 5
+    assert category_2.product_count == 5
+    assert category_1.category_count == 3
+    assert category_2.category_count == 3
 
 
 def test_product_new_product_1(product_new_1, category_1):
@@ -80,3 +80,17 @@ def test_category_add_product(category_1, product_3):
 
 def test_category_prodict_str(category_2):
     assert category_2.products_str == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'
+
+
+def test_product_str(product_1, product_2):
+    assert str(product_1) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert str(product_2) == "Iphone 15, 210000.0 руб. Остаток: 8 шт."
+
+
+def test_product_add(product_1, product_2):
+    assert product_1 + product_2 == 2580000
+
+
+def test_category_str(category_1, category_2):
+    assert str(category_1) == "Смартфоны, количество продуктов: 13"
+    assert str(category_2) == "Телевизоры, количество продуктов: 7"
