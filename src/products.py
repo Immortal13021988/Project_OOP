@@ -21,8 +21,7 @@ class Product:
         """Сложение стоимости продуктов на складе"""
         if type(other) is self.__class__:
             return self.price * self.quantity + other.price * other.quantity
-        else:
-            raise TypeError
+        raise TypeError
 
     @classmethod
     def new_product(cls, new_dict, prod_list):
