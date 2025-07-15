@@ -19,7 +19,7 @@ class Product:
 
     def __add__(self, other):
         """Сложение стоимости продуктов на складе"""
-        if type(other) is Product:
+        if type(other) is self.__class__:
             return self.price * self.quantity + other.price * other.quantity
         else:
             raise TypeError
@@ -81,13 +81,6 @@ class Smartphone(Product):
         self.memory = memory  # объем встроенной памяти
         self.color = color  # цвет
 
-    def __add__(self, other):
-        """Сложение стоимости продуктов на складе"""
-        if type(other) is Smartphone:
-            return self.price * self.quantity + other.price * other.quantity
-        else:
-            raise TypeError
-
 
 class LawnGrass(Product):  # Газонная трава
     def __init__(
@@ -97,13 +90,6 @@ class LawnGrass(Product):  # Газонная трава
         self.country = country  # страна производитель
         self.germination_period = germination_period  # срок прорастания
         self.color = color  # цвет
-
-    def __add__(self, other):
-        """Сложение стоимости продуктов на складе"""
-        if type(other) is LawnGrass:
-            return self.price * self.quantity + other.price * other.quantity
-        else:
-            raise TypeError
 
 
 class Category:
