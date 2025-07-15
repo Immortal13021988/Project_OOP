@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 from src.products import Product
-
+import pytest
 
 def test_product_init_1(product_1):
     assert product_1.name == "Samsung Galaxy S23 Ultra"
@@ -76,10 +76,12 @@ def test_category_add_product(category_1, product_3):
     assert len(category_1.products_list) == 2
     category_1.add_product(product_3)
     assert len(category_1.products_list) == 3
+    with pytest.raises(TypeError):
+        category_1.add_product("product_3")
 
 
 def test_category_prodict_str(category_2):
-    assert category_2.products_str == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'
+    assert category_2.products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.\n'
 
 
 def test_product_str(product_1, product_2):
@@ -91,6 +93,29 @@ def test_product_add(product_1, product_2):
     assert product_1 + product_2 == 2580000
 
 
+def test_product_add_raise(product_1):
+    with pytest.raises(TypeError):
+        product_1 + "product_1"
+
+
 def test_category_str(category_1, category_2):
     assert str(category_1) == "Смартфоны, количество продуктов: 13"
     assert str(category_2) == "Телевизоры, количество продуктов: 7"
+
+
+def test_smartphone_add(smartphone_1, smartphone_2):
+    assert smartphone_1 + smartphone_2 == 2580000
+
+
+def test_smartphone_add_raise(smartphone_1):
+    with pytest.raises(TypeError):
+        smartphone_1 + "smartphone_1"
+
+
+def test_lawn_grass_add(grass_1, grass_2):
+    assert grass_1 + grass_2 == 16750
+
+
+def test_lawn_grass_add_raise(grass_1):
+    with pytest.raises(TypeError):
+        grass_1 + "grass_1"

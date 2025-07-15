@@ -1,5 +1,6 @@
 class ProdIterator:
-    """ Итератор"""
+    """Итератор"""
+
     def __init__(self, category_obj):
         """Инициализация итератора"""
         self.category = category_obj
