@@ -136,3 +136,15 @@ def test_print_mixin(capsys):
     LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
     message = capsys.readouterr()
     assert message.out.strip() == "LawnGrass (Газонная трава, Элитная трава для газона, 500.0, 20)"
+
+
+def test_add_product_quantity_0():
+    with pytest.raises(ValueError) as e:
+        Product(
+            "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 0
+        )
+
+
+def test_middle_price(category_1, category_3):
+    assert category_1.middle_price() == 195000.00
+    assert category_3.middle_price() == 0
