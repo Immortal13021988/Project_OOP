@@ -30,6 +30,22 @@ def category_2():
 
 
 @pytest.fixture
+def category_3():
+    return Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться "
+                    "просмотром, станет вашим другом и помощником",
+        products=[]
+    )
+
+
+@pytest.fixture
+def product_0():
+    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+            "quantity": 0}
+
+
+@pytest.fixture
 def product_1():
     return Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
@@ -75,7 +91,8 @@ def list_dicts():
     return [
         {
             "name": "Смартфоны",
-            "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
+            "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных "
+                           "функций для удобства жизни",
             "products": [
                 {
                     "name": "Samsung Galaxy C23 Ultra",
@@ -99,7 +116,8 @@ def list_dicts():
         },
         {
             "name": "Телевизоры",
-            "description": "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+            "description": "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом "
+                           "и помощником",
             "products": [
                 {
                     "name": "55\" QLED 4K",
